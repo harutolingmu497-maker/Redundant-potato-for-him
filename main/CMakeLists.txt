@@ -1,0 +1,12 @@
+
+idf_component_register(
+    SRCS "station_example_main.c"
+    INCLUDE_DIRS "."
+    REQUIRES 
+        nvs_flash
+        esp_wifi
+        esp_netif
+        esp_event
+        esp_http_server 
+        driver
+)
