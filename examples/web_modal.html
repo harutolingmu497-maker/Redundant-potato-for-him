@@ -22,6 +22,8 @@
 
     /* フォーカスの視覚化（アクセシビリティ確認用） */
     button:focus{outline:3px solid #b6d4ff;outline-offset:2px}
+    /* スクリーンリーダ向け非表示 */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   </style>
 </head>
 <body>
@@ -31,11 +33,11 @@
   <button id="open" class="btn btn-primary">削除ダイアログを開く</button>
 
   <!-- モーダル本体（初期は非表示） -->
-  <div id="modal" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+  <div id="modal" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="dialog-title" aria-describedby="dialog-desc">
     <div class="dialog" role="document">
       <header id="dialog-title">アイテムを削除しますか？</header>
       <div class="body">
-        <p>この操作は元に戻せません。削除する場合は「削除」をクリックしてください。</p>
+        <p id="dialog-desc">この操作は元に戻せません。削除する場合は「削除」をクリックしてください。</p>
         <p><strong>対象:</strong> サンプルアイテム 001</p>
       </div>
       <div class="footer">
@@ -52,10 +54,19 @@
     const cancelBtn = document.getElementById('cancel');
     const deleteBtn = document.getElementById('delete');
 
+    // フォーカストラップ用のフォーカス可能要素を取得
+    function getFocusable(container){
+      return Array.from(container.querySelectorAll('a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])'))
+        .filter(el => !el.hasAttribute('disabled'));
+    }
+
     // 開く
     openBtn.addEventListener('click', ()=>{
       // 表示
       modal.classList.remove('hidden');
+      // 背景をスクリーンリーダーから隠す
+      document.querySelectorAll('body > *:not(#modal)').forEach(el => el.setAttribute('aria-hidden', 'true'));
+      modal.removeAttribute('aria-hidden');
       // 最初のフォーカスをキャンセルボタンに移す
       cancelBtn.focus();
       // ページスクロール防止（簡易）
@@ -66,6 +77,8 @@
     function closeModal(returnValue){
       modal.classList.add('hidden');
       document.body.style.overflow = '';
+      // 背景の aria-hidden を解除
+      document.querySelectorAll('body > *:not(#modal)').forEach(el => el.removeAttribute('aria-hidden'));
       openBtn.focus();
       console.log('dialog result:', returnValue);
     }
@@ -73,10 +86,24 @@
     cancelBtn.addEventListener('click', ()=> closeModal('cancel'));
     deleteBtn.addEventListener('click', ()=> closeModal('delete'));
 
-    // キーボード操作: Esc で閉じる。Tab はブラウザに任せるが、実運用ではトラップが望ましい。
+    // キーボード操作: Esc で閉じる。Tab のフォーカストラップを実装
     window.addEventListener('keydown', (ev)=>{
       if(ev.key === 'Escape' && !modal.classList.contains('hidden')){
         closeModal('esc');
+      }
+
+      if(ev.key === 'Tab' && !modal.classList.contains('hidden')){
+        const focusable = getFocusable(modal.querySelector('.dialog'));
+        if(focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if(ev.shiftKey && document.activeElement === first){
+          ev.preventDefault();
+          last.focus();
+        } else if(!ev.shiftKey && document.activeElement === last){
+          ev.preventDefault();
+          first.focus();
+        }
       }
     });
 
