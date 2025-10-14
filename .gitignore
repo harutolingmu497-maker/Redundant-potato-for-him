@@ -1,0 +1,15 @@
+# Build output
+build/
+
+# VS Code workspace and generated config files
+.vscode/launch.json
+.vscode/c_cpp_properties.json
+.vscode/*.code-workspace
+
+# Dependency lock
+dependencies.lock
+
+# Common ignores
+*.pyc
+__pycache__/
+.cache/
