@@ -1,0 +1,26 @@
+body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+h1{
+    width : 300%;
+    height: auto;
+    text-align: center;
+}
+.controller {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 10px;
+}
+.controller img {
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+}
+.up { grid-column: 2; grid-row: 1; }
+.left { grid-column: 1; grid-row: 2; }
+.right { grid-column: 3; grid-row: 2; }
+.down { grid-column: 2; grid-row: 3; }
