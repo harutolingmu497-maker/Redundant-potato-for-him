@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ロボット制御</title>
+    <style>
+        body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+            }
+        h1{
+            width : 300%;
+            height: auto;
+            text-align: center;
+        }
+        .controller {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 10px;
+        }
+        .controller img {
+            width: 100px;
+            height: auto;
+            cursor: pointer;
+        }
+        .up { grid-column: 2; grid-row: 1; }
+        .left { grid-column: 1; grid-row: 2; }
+        .right { grid-column: 3; grid-row: 2; }
+        .down { grid-column: 2; grid-row: 3; }
+    </style>
+    <script>
+        alert("ロボットを操作するには、矢印キーを使用してください。");
+    </script>
+</head>
+    
+<body>
+    <h1>コントローラー</h1>
+    <div class="controller">
+        <img src="./images/up.png" alt="上" class="up"/>
+        <img src="./images/left.png" alt="左" class="left"/>
+        <img src="./images/right.png" alt="右" class="right"/>
+        <img src="./images/down.png" alt="下" class="down"/>
+    </div>
+</body>
+</html>
