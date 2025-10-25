@@ -5,18 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ロボット制御</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script  src="javascript/script_1.js" defer></script>
+    <script src="javascript/script_1.js" defer></script>
 </head>
-    
+
 <body>
     <h1>コントローラー</h1>
-    <button type="button" onclick="ChangeParaToDate()">クリックして下さい</button>
-    <p id="eid_date">ちくわ(⌒∇⌒)</p>
+    
+    <!-- 左寄せセクションを追加 -->
+    <div class="left-section">
+        <div class="oshu_1" onclick="ChangeParaToDate()">👆 クリックして下さい</div>
+    </div>
+    <li><a href="index_2.html">お問い合わせはこちら</a></li>
+    <p>ちくわ(⌒∇⌒)</p>
+    
     <div class="controller">
-        <img src="./images/up.png" alt="上" class="up"/>
-        <img src="./images/left.png" alt="左" class="left"/>
-        <img src="./images/right.png" alt="右" class="right"/>
-        <img src="./images/down.png" alt="下" class="down"/>
+        <div class="button up"></div>
+        <div class="button left"></div>
+        <div class="button right"></div>
+        <div class="button down"></div>
     </div>
 </body>
 </html>
