@@ -21,8 +21,8 @@
 #define b "83f9da3da2bd0"
 
 // ===== WiFi設定 =====
-#define WIFI_SSID      B
-#define WIFI_PASS       b
+#define WIFI_SSID      A
+#define WIFI_PASS       a
 #define WIFI_MAX_RETRY 5
 
 // ===== モータードライバ用ピン設定 =====
