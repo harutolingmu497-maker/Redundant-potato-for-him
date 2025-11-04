@@ -1,0 +1,152 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;  /* center から flex-start に変更 */
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+}
+
+h1 {
+    width: 100%;
+    text-align: left;  /* 左寄せにする場合 */
+    color: #333;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+    width: 100%;
+    text-align: left;
+}
+
+/* クリックボタン */
+.oshu_1 {
+    cursor: pointer;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    align-self: flex-start;
+    margin-left: 20px;
+}
+
+.oshu_1:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.oshu_1:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+/* コントローラーのコンテナ */
+/* コントローラーのコンテナ */
+.controllers-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+/* 左コントローラー（方向キー） */
+.controller_1 {
+    display: grid;
+    grid-template-columns: repeat(3, 150px);  /* 200px → 150px */
+    grid-template-rows: repeat(3, 150px);
+    gap: 10px;
+}
+
+/* 右コントローラー（アクションボタン） */
+.controller_2 {
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    grid-template-rows: repeat(3, 150px);
+    gap: 10px;
+}
+
+/* ボタン共通スタイル */
+.button {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    width: 150px;   /* 100px → 150px、グリッドと一致 */
+    height: 150px;
+    transition: all 0.2s ease;
+}
+
+.button:hover {
+    transform: scale(1.08);  /* ホバー時に8%拡大 */
+}
+
+.button:active {
+    transform: scale(0.92);  /* クリック時に8%縮小 */
+    opacity: 0.8;
+}
+
+/* 左コントローラー - 方向キー */
+.up {
+    background-image: url("../images/up.png");
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.left {
+    background-image: url("../images/left.png");
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.right {
+    background-image: url("../images/right.png");
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.down {
+    background-image: url("../images/down.png");
+    grid-column: 2;
+    grid-row: 3;
+}
+
+/* 右コントローラー - アクションボタン */
+.three {
+    background-image: url("../images/three.png");
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.one {
+    background-image: url("../images/one.png");
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.four {
+    background-image: url("../images/four.png");
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.two {
+    background-image: url("../images/two.png");
+    grid-column: 2;
+    grid-row: 3;
+}
